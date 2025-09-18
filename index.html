@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AzuShop - Your Premium Shopping Destination</title>
+    <meta name="description" content="Discover amazing products at AzuShop. Browse, shop, and enjoy a seamless online shopping experience.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <h1>AzuShop</h1>
+                </div>
+                
+                <nav class="header__nav">
+                    <ul class="nav__list">
+                        <li><a href="#home" class="nav__link active">Home</a></li>
+                        <li><a href="#products" class="nav__link">Products</a></li>
+                        <li><a href="#categories" class="nav__link">Categories</a></li>
+                        <li><a href="#about" class="nav__link">About</a></li>
+                        <li><a href="#contact" class="nav__link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header__actions">
+                    <div class="search__container">
+                        <input type="text" class="search__input" placeholder="Search products...">
+                        <button class="search__btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="account__btn">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </button>
+                    
+                    <button class="cart__btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart__count" id="cartCount">0</span>
+                    </button>
+                </div>
+                
+                <button class="mobile__menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero__content">
+                <div class="hero__text">
+                    <h2 class="hero__title">Discover Amazing Products</h2>
+                    <p class="hero__subtitle">Shop the latest trends and find everything you need in one place</p>
+                    <button class="hero__cta">Shop Now</button>
+                </div>
+                <div class="hero__image">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" alt="Shopping" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section__title">Shop by Category</h2>
+            <div class="categories__grid" id="categoriesGrid">
+                <!-- Categories will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="products__header">
+                <h2 class="section__title">Featured Products</h2>
+                <div class="products__filters">
+                    <button class="filter__btn active" data-filter="all">All</button>
+                    <button class="filter__btn" data-filter="electronics">Electronics</button>
+                    <button class="filter__btn" data-filter="clothing">Clothing</button>
+                    <button class="filter__btn" data-filter="home">Home & Garden</button>
+                    <button class="filter__btn" data-filter="books">Books</button>
+                </div>
+            </div>
+            
+            <div class="products__grid" id="productsGrid">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+            
+            <div class="products__loading" id="productsLoading" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Loading products...</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart__modal" id="cartModal">
+        <div class="cart__overlay"></div>
+        <div class="cart__content">
+            <div class="cart__header">
+                <h3>Shopping Cart</h3>
+                <button class="cart__close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="cart__body">
+                <div class="cart__items" id="cartItems">
+                    <!-- Cart items will be populated by JavaScript -->
+                </div>
+                
+                <div class="cart__empty" id="cartEmpty">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                    <button class="btn btn--primary" id="continueShopping">Continue Shopping</button>
+                </div>
+            </div>
+            
+            <div class="cart__footer">
+                <div class="cart__total">
+                    <span class="total__label">Total: </span>
+                    <span class="total__amount" id="cartTotal">$0.00</span>
+                </div>
+                <div class="cart__actions">
+                    <button class="btn btn--secondary" id="clearCart">Clear Cart</button>
+                    <button class="btn btn--primary" id="checkoutBtn">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="product__modal" id="productModal">
+        <div class="product__overlay"></div>
+        <div class="product__content">
+            <button class="product__close" id="productClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="product__detail" id="productDetail">
+                <!-- Product details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout__modal" id="checkoutModal">
+        <div class="checkout__overlay"></div>
+        <div class="checkout__content">
+            <div class="checkout__header">
+                <h3>Checkout</h3>
+                <button class="checkout__close" id="checkoutClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form class="checkout__form" id="checkoutForm">
+                <div class="checkout__section">
+                    <h4>Shipping Information</h4>
+                    <div class="form__row">
+                        <input type="text" class="form__input" placeholder="First Name" required>
+                        <input type="text" class="form__input" placeholder="Last Name" required>
+                    </div>
+                    <input type="email" class="form__input" placeholder="Email Address" required>
+                    <input type="tel" class="form__input" placeholder="Phone Number" required>
+                    <input type="text" class="form__input" placeholder="Address" required>
+                    <div class="form__row">
+                        <input type="text" class="form__input" placeholder="City" required>
+                        <input type="text" class="form__input" placeholder="State" required>
+                        <input type="text" class="form__input" placeholder="ZIP Code" required>
+                    </div>
+                </div>
+                
+                <div class="checkout__section">
+                    <h4>Payment Information</h4>
+                    <input type="text" class="form__input" placeholder="Card Number" required>
+                    <div class="form__row">
+                        <input type="text" class="form__input" placeholder="MM/YY" required>
+                        <input type="text" class="form__input" placeholder="CVC" required>
+                    </div>
+                </div>
+                
+                <div class="checkout__summary">
+                    <div class="summary__item">
+                        <span>Subtotal:</span>
+                        <span id="checkoutSubtotal">$0.00</span>
+                    </div>
+                    <div class="summary__item">
+                        <span>Shipping:</span>
+                        <span>$9.99</span>
+                    </div>
+                    <div class="summary__item summary__total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">$0.00</span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn--primary btn--full">
+                    Complete Purchase
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3>AzuShop</h3>
+                    <p>Your premium shopping destination for quality products at great prices.</p>
+                </div>
+                
+                <div class="footer__section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h4>Follow Us</h4>
+                    <div class="social__links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2025 AzuShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Message -->
+    <div class="success__message" id="successMessage">
+        <div class="success__content">
+            <i class="fas fa-check-circle"></i>
+            <span id="successText">Item added to cart!</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/data.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
